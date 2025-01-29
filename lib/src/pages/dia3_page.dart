@@ -1,19 +1,17 @@
-import 'dart:convert';
-
 import 'package:conciertos2/src/models/grupos_model.dart';
 import 'package:conciertos2/src/providers/grupos_provider.dart';
+import 'package:conciertos2/src/widget/cardDia2.dart';
 import 'package:conciertos2/src/widget/cards.dart';
-import 'package:conciertos2/src/models/grupos_model.dart';
 import 'package:flutter/material.dart';
 
-class DiaUnoPage extends StatefulWidget {
-  const DiaUnoPage({super.key});
+class DiaTresPage extends StatefulWidget {
+  const DiaTresPage({super.key});
 
   @override
-  State<DiaUnoPage> createState() => _DiaUnoPageState();
+  State<DiaTresPage> createState() => _DiaTresPageState();
 }
 
-class _DiaUnoPageState extends State<DiaUnoPage> {
+class _DiaTresPageState extends State<DiaTresPage> {
   final ScrollController _scrollControllerNorte = ScrollController();
   final ScrollController _scrollControllerSur = ScrollController();
   final ScrollController _scrollControllerMontana = ScrollController();
@@ -26,69 +24,51 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
   final gruposProvider = new ProviderGrupos();
 
   @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //       //backgroundColor: Color.fromRGBO(132, 40, 40, 1),
-  //       // appBar: AppBar(
-  //       //   backgroundColor: Color.fromRGBO(132, 40, 131, 1),
-  //       //   title: Center(
-  //       //     child: FadeInImage(
-  //       //               placeholder: AssetImage('aa/EscNorte.png'),
-  //       //               image: AssetImage('aa/EscNorte.png'),
-  //       //               fadeInDuration: Duration(seconds: 3),
-  //       //               width: MediaQuery.of(context).size.width * 0.6,
-  //       //               fit: BoxFit.cover,
-  //       //     ),
-  //       //   ),
-  //       // ),
-  //       body: //_todosGrupos.isEmpty ? _listarGrupos() : _buscarGrupos(),
-  //           Container(
-  //     decoration: BoxDecoration(
-  //       image: DecorationImage(
-  //         image: AssetImage("aa/background_dia1.png"),
-  //         fit: BoxFit.cover,
-  //       ),
-  //     ),
-  //     child: SingleChildScrollView(
-  //       child: Column(
-  //         children: [
-  //           //_imagenFecha(),
-  //           //_imagenNorte(),
-  //           //_listarGruposDiaUno(),
-  //           // _imagenSur(),
-  //           // _listarGruposSur(),
-  //           // _imagenMontana(),
-  //           // _listarGruposMontana(),
-  //           // _imagenBoomerang(),
-  //           // _listarGruposBoomerang(),
-  //           // _imagenLaCasita(),
-  //           // _listarGruposLaCasita(),
-  //           // _imagenParaguay(),
-  //           // _listarGruposParaguay(),
-  //         ],
-  //       ),
-  //     ),
-  //   ));
-  // }
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.green,
-        image: DecorationImage(
-          image: AssetImage("aa/background_dia1.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: _listarGruposDiaUno(),
-    );
+    return Scaffold(
+        backgroundColor: Color.fromRGBO(132, 40, 40, 1),
+        // appBar: AppBar(
+        //   backgroundColor: Color.fromRGBO(132, 40, 131, 1),
+        //   title: Center(
+        //     child: Text("Dia 2 - 19/02/2023"),
+        //   ),
+        // ),
+        body: //_todosGrupos.isEmpty ? _listarGrupos() : _buscarGrupos(),
+            Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("aa/background_dia2.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _imagenFecha(),
+                _imagenNorte(),
+                _listarGruposNorte(),
+                _imagenSur(),
+                _listarGruposSur(),
+                _imagenMontana(),
+                _listarGruposMontana(),
+                _imagenBoomerang(),
+                _listarGruposBoomerang(),
+                _imagenLaCasita(),
+                _listarGruposLaCasita(),
+                _imagenParaguay(),
+                _listarGruposParaguay(),
+              ],
+            ),
+          ),
+        ));
   }
 
   Widget _imagenFecha() {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: FadeInImage(
-        placeholder: AssetImage('aa/fecha1.png'),
-        image: AssetImage('aa/fecha1.png'),
+        placeholder: AssetImage('aa/fecha2.png'),
+        image: AssetImage('aa/fecha2.png'),
         fadeInDuration: Duration(seconds: 3),
         width: MediaQuery.of(context).size.width * 0.6,
         fit: BoxFit.cover,
@@ -174,98 +154,9 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
     );
   }
 
-  Widget _listarGruposDiaUno() {
-    return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaUno(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: CircularProgressIndicator())],
-          );
-        }
-
-        //final material = Materiales.fromJsonList(result);
-        //final datosDecodificados = json.decode(snapshot.data);
-        final grupo = Grupos.fromJsonList(snapshot.data);
-        print("La lista de grupos del dia 1 es: ");
-
-        // if (_todosGrupos.isEmpty){
-        //   _todosGrupos = grupo.items;
-        //   _gruposEncontrados = grupo.items;
-        // }
-        final _todosGruposDiaUno = grupo.items;
-        print(_todosGruposDiaUno);
-        return Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Scrollbar(
-                thumbVisibility: true,
-                controller: _scrollControllerNorte,
-                thickness: 5,
-                child: ListView.builder(
-                    controller: _scrollControllerNorte,
-                    shrinkWrap: true,
-                    itemCount: _todosGruposDiaUno.length,
-                    itemBuilder: (context, index) {
-                      final grupo = _todosGruposDiaUno[index];
-                      //Grupo grupo1 =
-
-                      return _listItems(grupo);
-                    }),
-              ),
-            ),
-          ],
-        );
-
-        // return Column(
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.all(10),
-        //       child:
-        //           TextField(
-        //             onChanged: (text) {
-        //              _filtrar(text);
-        //             },
-        //             decoration: const InputDecoration(
-        //               labelText: 'Buscar Bandas',
-        //               suffixIcon: Icon(Icons.search),
-        //             )
-        //           ),
-        //     ),
-        //     Expanded(
-        //       child: SizedBox(
-        //         height: 200,
-        //         child: ListView.builder(
-        //           itemCount: _todosGrupos.length,
-        //           itemBuilder: (context, index) {
-        //             final grupo = _todosGrupos[index];
-        //             //Grupo grupo1 =
-
-        //             return _listItems (grupo);
-        //           }
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // );
-
-        // return ListView(
-        //      shrinkWrap: true,
-        //      physics: const NeverScrollableScrollPhysics(),
-        //      children: _listItems(reclamoCerradoCMDetalle.items, context)
-        // );
-      },
-    );
-  }
-
   Widget _listarGruposNorte() {
     return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaUnoNorte(),
+      future: gruposProvider.mostrarGruposDiaDosNorte(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
@@ -280,21 +171,21 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
         //final material = Materiales.fromJsonList(result);
         //final datosDecodificados = json.decode(snapshot.data);
         final grupo = Grupos.fromJsonList(snapshot.data);
-        print("La lista de grupos norte es: ");
 
         // if (_todosGrupos.isEmpty){
         //   _todosGrupos = grupo.items;
         //   _gruposEncontrados = grupo.items;
         // }
         final _todosGruposNorte = grupo.items;
-        print(_todosGruposNorte);
+
         return Column(
           children: [
             SizedBox(
               height: 400,
               child: Scrollbar(
-                thumbVisibility: true,
                 controller: _scrollControllerNorte,
+                //trackVisibility: true,
+                thumbVisibility: true,
                 thickness: 5,
                 child: ListView.builder(
                     controller: _scrollControllerNorte,
@@ -354,7 +245,7 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
 
   Widget _listarGruposSur() {
     return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaUnoSur(),
+      future: gruposProvider.mostrarGruposDiaDosSur(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
@@ -443,7 +334,7 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
 
   Widget _listarGruposMontana() {
     return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaUnoMontana(),
+      future: gruposProvider.mostrarGruposDiaDosMontana(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
@@ -475,8 +366,8 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
                 controller: _scrollControllerMontana,
                 thickness: 5,
                 child: ListView.builder(
-                    controller: _scrollControllerMontana,
                     shrinkWrap: true,
+                    controller: _scrollControllerMontana,
                     itemCount: _todosGruposMontana.length,
                     itemBuilder: (context, index) {
                       final grupo = _todosGruposMontana[index];
@@ -532,7 +423,7 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
 
   Widget _listarGruposBoomerang() {
     return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaUnoBoomerang(),
+      future: gruposProvider.mostrarGruposDiaDosBoomerang(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
@@ -621,7 +512,7 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
 
   Widget _listarGruposLaCasita() {
     return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaUnoCasitaDelBlues(),
+      future: gruposProvider.mostrarGruposDiaDosCasitaDelBlues(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
@@ -632,7 +523,15 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
             children: [Center(child: CircularProgressIndicator())],
           );
         }
+
+        //final material = Materiales.fromJsonList(result);
+        //final datosDecodificados = json.decode(snapshot.data);
         final grupo = Grupos.fromJsonList(snapshot.data);
+
+        // if (_todosGrupos.isEmpty){
+        //   _todosGrupos = grupo.items;
+        //   _gruposEncontrados = grupo.items;
+        // }
 
         final _todosGruposLaCasita = grupo.items;
 
@@ -645,8 +544,8 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
                 controller: _scrollControllerCasita,
                 thickness: 5,
                 child: ListView.builder(
-                    shrinkWrap: true,
                     controller: _scrollControllerCasita,
+                    shrinkWrap: true,
                     itemCount: _todosGruposLaCasita.length,
                     itemBuilder: (context, index) {
                       final grupo = _todosGruposLaCasita[index];
@@ -658,13 +557,51 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
             ),
           ],
         );
+
+        // return Column(
+        //   children: [
+        //     Padding(
+        //       padding: const EdgeInsets.all(10),
+        //       child:
+        //           TextField(
+        //             onChanged: (text) {
+        //              _filtrar(text);
+        //             },
+        //             decoration: const InputDecoration(
+        //               labelText: 'Buscar Bandas',
+        //               suffixIcon: Icon(Icons.search),
+        //             )
+        //           ),
+        //     ),
+        //     Expanded(
+        //       child: SizedBox(
+        //         height: 200,
+        //         child: ListView.builder(
+        //           itemCount: _todosGrupos.length,
+        //           itemBuilder: (context, index) {
+        //             final grupo = _todosGrupos[index];
+        //             //Grupo grupo1 =
+
+        //             return _listItems (grupo);
+        //           }
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // );
+
+        // return ListView(
+        //      shrinkWrap: true,
+        //      physics: const NeverScrollableScrollPhysics(),
+        //      children: _listItems(reclamoCerradoCMDetalle.items, context)
+        // );
       },
     );
   }
 
   Widget _listarGruposParaguay() {
     return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaUnoParaguay(),
+      future: gruposProvider.mostrarGruposDiaDosParaguay(),
       builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text(snapshot.error.toString());
@@ -750,7 +687,7 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
     List<dynamic> grupo = [infogrupo.estadio, infogrupo.banda, infogrupo.fecha];
     final witgetvalue = Padding(
       padding: const EdgeInsets.only(top: 1.0, bottom: 1.0),
-      child: CardGrupo(grupos: grupo),
+      child: CardGrupo2(grupos: grupo),
     );
 
     return witgetvalue;

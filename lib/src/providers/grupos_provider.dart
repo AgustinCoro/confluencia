@@ -7,14 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-
-class ProviderGrupos with ChangeNotifier{
+class ProviderGrupos with ChangeNotifier {
   List<dynamic> getOption = [];
   // ProviderGrupos(){
   //   cargarGrupos();
   // }
 
-  Future <void> cargarAvisos() async {
+  Future<void> cargarAvisos() async {
     Database db = await openDatabase('CosquinRock.db');
 
     List<Map<String, dynamic>> avisos = [
@@ -72,7 +71,6 @@ class ProviderGrupos with ChangeNotifier{
 
     print("La lista de mensajes son:");
     print(result);
-
   }
 
   //Future <List<dynamic>> cargarGrupos() async {
@@ -86,32 +84,83 @@ class ProviderGrupos with ChangeNotifier{
     // print (datos);
 
     for (var item in datos) {
-    // await db.insert(
-    //   'table_name',
-    //   {
-    //     'column_1': item['column_1'],
-    //     'column_2': item['column_2'],
-    //   },
-    //   conflictAlgorithm: ConflictAlgorithm.replace,
-    // );
+      // await db.insert(
+      //   'table_name',
+      //   {
+      //     'column_1': item['column_1'],
+      //     'column_2': item['column_2'],
+      //   },
+      //   conflictAlgorithm: ConflictAlgorithm.replace,
+      // );
       //print(item['banda']);
-      await db.rawInsert('INSERT INTO Grilla (estadio, banda, fecha) VALUES (?, ?, ?)', 
-                                                            [item['estadio'], item['banda'], item['fecha']]);
+      await db.rawInsert(
+          'INSERT INTO Grilla (estadio, banda, fecha) VALUES (?, ?, ?)',
+          [item['estadio'], item['banda'], item['fecha']]);
     }
 
     cargarAvisos();
     //return datos;
     //return getOption;
-
   }
 
   Future<List<Map>> mostrarGruposDiaUnoNorte() async {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-    );
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC");
+
+    // print("Dia 1 norte");
+    // print(result);
+
+    return result;
+  }
+
+  Future<List<Map>> mostrarGruposDiaUno() async {
+    final db = await CosquiRockDataBase.instance.database;
+
+    List<Map> result = await db.rawQuery(
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '06/02/2024 00:00' AND '06/02/2024 23:59' ORDER BY fecha DESC");
+
+    // print("Dia 1 norte");
+    // print(result);
+
+    return result;
+  }
+
+  Future<List<Map>> mostrarGruposDiaDos() async {
+    final db = await CosquiRockDataBase.instance.database;
+
+    List<Map> result = await db.rawQuery(
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '07/02/2024 00:00' AND '07/02/2024 23:59' ORDER BY fecha DESC");
+
+    // print("Dia 1 norte");
+    // print(result);
+
+    return result;
+  }
+
+  Future<List<Map>> mostrarGruposDiaTres() async {
+    final db = await CosquiRockDataBase.instance.database;
+
+    List<Map> result = await db.rawQuery(
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '08/02/2024 00:00' AND '08/02/2024 23:59' ORDER BY fecha DESC");
+
+    // print("Dia 1 norte");
+    // print(result);
+
+    return result;
+  }
+
+  Future<List<Map>> mostrarGruposDiaCuatro() async {
+    final db = await CosquiRockDataBase.instance.database;
+
+    List<Map> result = await db.rawQuery(
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '09/02/2024 00:00' AND '09/02/2024 23:59' ORDER BY fecha DESC");
 
     // print("Dia 1 norte");
     // print(result);
@@ -123,8 +172,7 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Sur' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Sur' ORDER BY fecha DESC");
 
     return result;
   }
@@ -133,8 +181,7 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Montaña' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Montaña' ORDER BY fecha DESC");
 
     return result;
   }
@@ -143,8 +190,7 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Boomerang' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Boomerang' ORDER BY fecha DESC");
 
     return result;
   }
@@ -153,8 +199,7 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Paraguay' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Paraguay' ORDER BY fecha DESC");
 
     return result;
   }
@@ -163,32 +208,29 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'La Casita del Blues' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'La Casita del Blues' ORDER BY fecha DESC");
 
     return result;
   }
 
-  Future<List<Map>> mostrarGruposDiaDos() async {
-    final db = await CosquiRockDataBase.instance.database;
+  // Future<List<Map>> mostrarGruposDiaDos() async {
+  //   final db = await CosquiRockDataBase.instance.database;
 
-    List<Map<String, dynamic>> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' ORDER BY fecha DESC"
-    );
+  //   List<Map<String, dynamic>> result = await db.rawQuery(
+  //       "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' ORDER BY fecha DESC");
 
-    // print ("Los grupos del dia 2 son");
-    // print(result);
+  //   // print ("Los grupos del dia 2 son");
+  //   // print(result);
 
-    return result;
-  }
+  //   return result;
+  // }
 
   Future<List<Map>> mostrarGruposDiaDosNorte() async {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-    );
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC");
 
     // print("Dia 1 norte");
     // print(result);
@@ -200,8 +242,7 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Sur' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Sur' ORDER BY fecha DESC");
 
     return result;
   }
@@ -210,8 +251,7 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Montaña' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Montaña' ORDER BY fecha DESC");
 
     return result;
   }
@@ -220,8 +260,7 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Boomerang' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Boomerang' ORDER BY fecha DESC");
 
     return result;
   }
@@ -230,8 +269,7 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Paraguay' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Paraguay' ORDER BY fecha DESC");
 
     return result;
   }
@@ -240,61 +278,58 @@ class ProviderGrupos with ChangeNotifier{
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'La Casita del Blues' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'La Casita del Blues' ORDER BY fecha DESC");
 
-    return result; 
+    return result;
   }
 
-  Future ingresarBandaGrillaPersonal(String estadio, String banda, String fecha) async {
+  Future ingresarBandaGrillaPersonal(
+      String estadio, String banda, String fecha) async {
     final db = await CosquiRockDataBase.instance.database;
 
-    await db.rawInsert('INSERT INTO GrillaPersonal (estadio, banda, fecha) VALUES (?, ?, ?)', 
-                                                            [estadio, banda, fecha]);
+    await db.rawInsert(
+        'INSERT INTO GrillaPersonal (estadio, banda, fecha) VALUES (?, ?, ?)',
+        [estadio, banda, fecha]);
 
-    List<Map> result = await db.rawQuery(
-      "SELECT * FROM GrillaPersonal ORDER BY fecha DESC"
-    );
+    List<Map> result =
+        await db.rawQuery("SELECT * FROM GrillaPersonal ORDER BY fecha DESC");
 
     print("La lista personal es");
     print(result);
-    //return result; 
+    //return result;
   }
 
   Future<List<Map>> mostrarGruposDiaUnoGrillaPersonal() async {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' ORDER BY fecha DESC"
-    );
+        "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' ORDER BY fecha DESC");
 
-    return result; 
+    return result;
   }
 
   Future<List<Map>> mostrarGruposDiaDosGrillaPersonal() async {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-      "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' ORDER BY fecha DESC"
-    );
-    return result; 
+        "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' ORDER BY fecha DESC");
+    return result;
   }
 
   Future borraGrupoPersonalizado(int identificador) async {
     final db = await CosquiRockDataBase.instance.database;
 
-    await db.rawDelete("DELETE FROM GrillaPersonal WHERE id = ?;", [identificador]);
+    await db
+        .rawDelete("DELETE FROM GrillaPersonal WHERE id = ?;", [identificador]);
   }
 
-  int _indexMenu = 0; 
+  int _indexMenu = 0;
 
-  int get indexMenu
-  {
+  int get indexMenu {
     return _indexMenu;
   }
-  
-  set indexMenu(int valor)
-  {
+
+  set indexMenu(int valor) {
     this._indexMenu = valor;
 
     notifyListeners();
