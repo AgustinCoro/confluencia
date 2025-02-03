@@ -26,50 +26,6 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
   final gruposProvider = new ProviderGrupos();
 
   @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //       //backgroundColor: Color.fromRGBO(132, 40, 40, 1),
-  //       // appBar: AppBar(
-  //       //   backgroundColor: Color.fromRGBO(132, 40, 131, 1),
-  //       //   title: Center(
-  //       //     child: FadeInImage(
-  //       //               placeholder: AssetImage('aa/EscNorte.png'),
-  //       //               image: AssetImage('aa/EscNorte.png'),
-  //       //               fadeInDuration: Duration(seconds: 3),
-  //       //               width: MediaQuery.of(context).size.width * 0.6,
-  //       //               fit: BoxFit.cover,
-  //       //     ),
-  //       //   ),
-  //       // ),
-  //       body: //_todosGrupos.isEmpty ? _listarGrupos() : _buscarGrupos(),
-  //           Container(
-  //     decoration: BoxDecoration(
-  //       image: DecorationImage(
-  //         image: AssetImage("aa/background_dia1.png"),
-  //         fit: BoxFit.cover,
-  //       ),
-  //     ),
-  //     child: SingleChildScrollView(
-  //       child: Column(
-  //         children: [
-  //           //_imagenFecha(),
-  //           //_imagenNorte(),
-  //           //_listarGruposDiaUno(),
-  //           // _imagenSur(),
-  //           // _listarGruposSur(),
-  //           // _imagenMontana(),
-  //           // _listarGruposMontana(),
-  //           // _imagenBoomerang(),
-  //           // _listarGruposBoomerang(),
-  //           // _imagenLaCasita(),
-  //           // _listarGruposLaCasita(),
-  //           // _imagenParaguay(),
-  //           // _listarGruposParaguay(),
-  //         ],
-  //       ),
-  //     ),
-  //   ));
-  // }
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -79,20 +35,64 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: _listarGruposDiaUno(),
+      child: Column(children: [_imagenDiaUno(), _listarGruposDiaUno()]),
     );
   }
 
-  Widget _imagenFecha() {
+  Widget _imagenDiaUno() {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: FadeInImage(
-        placeholder: AssetImage('aa/fecha1.png'),
-        image: AssetImage('aa/fecha1.png'),
+        placeholder: AssetImage('aa/Btn_Dia1.png'),
+        image: AssetImage('aa/Btn_Dia1.png'),
         fadeInDuration: Duration(seconds: 3),
         width: MediaQuery.of(context).size.width * 0.6,
         fit: BoxFit.cover,
       ),
+    );
+  }
+
+  Widget _listarGruposDiaUno() {
+    return FutureBuilder(
+      future: gruposProvider.mostrarGruposDiaUno(),
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Center(child: CircularProgressIndicator())],
+          );
+        }
+        final grupo = Grupos.fromJsonList(snapshot.data);
+        print("La lista de grupos del dia 1 es: ");
+
+        final _todosGruposDiaUno = grupo.items;
+        print(_todosGruposDiaUno);
+        return Column(
+          children: [
+            SizedBox(
+              height: 400,
+              child: Scrollbar(
+                thumbVisibility: true,
+                controller: _scrollControllerNorte,
+                thickness: 5,
+                child: ListView.builder(
+                    controller: _scrollControllerNorte,
+                    shrinkWrap: true,
+                    itemCount: _todosGruposDiaUno.length,
+                    itemBuilder: (context, index) {
+                      final grupo = _todosGruposDiaUno[index];
+                      //Grupo grupo1 =
+
+                      return _listItems(grupo);
+                    }),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -171,95 +171,6 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
         width: MediaQuery.of(context).size.width * 0.9,
         fit: BoxFit.cover,
       ),
-    );
-  }
-
-  Widget _listarGruposDiaUno() {
-    return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaUno(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: CircularProgressIndicator())],
-          );
-        }
-
-        //final material = Materiales.fromJsonList(result);
-        //final datosDecodificados = json.decode(snapshot.data);
-        final grupo = Grupos.fromJsonList(snapshot.data);
-        print("La lista de grupos del dia 1 es: ");
-
-        // if (_todosGrupos.isEmpty){
-        //   _todosGrupos = grupo.items;
-        //   _gruposEncontrados = grupo.items;
-        // }
-        final _todosGruposDiaUno = grupo.items;
-        print(_todosGruposDiaUno);
-        return Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Scrollbar(
-                thumbVisibility: true,
-                controller: _scrollControllerNorte,
-                thickness: 5,
-                child: ListView.builder(
-                    controller: _scrollControllerNorte,
-                    shrinkWrap: true,
-                    itemCount: _todosGruposDiaUno.length,
-                    itemBuilder: (context, index) {
-                      final grupo = _todosGruposDiaUno[index];
-                      //Grupo grupo1 =
-
-                      return _listItems(grupo);
-                    }),
-              ),
-            ),
-          ],
-        );
-
-        // return Column(
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.all(10),
-        //       child:
-        //           TextField(
-        //             onChanged: (text) {
-        //              _filtrar(text);
-        //             },
-        //             decoration: const InputDecoration(
-        //               labelText: 'Buscar Bandas',
-        //               suffixIcon: Icon(Icons.search),
-        //             )
-        //           ),
-        //     ),
-        //     Expanded(
-        //       child: SizedBox(
-        //         height: 200,
-        //         child: ListView.builder(
-        //           itemCount: _todosGrupos.length,
-        //           itemBuilder: (context, index) {
-        //             final grupo = _todosGrupos[index];
-        //             //Grupo grupo1 =
-
-        //             return _listItems (grupo);
-        //           }
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // );
-
-        // return ListView(
-        //      shrinkWrap: true,
-        //      physics: const NeverScrollableScrollPhysics(),
-        //      children: _listItems(reclamoCerradoCMDetalle.items, context)
-        // );
-      },
     );
   }
 

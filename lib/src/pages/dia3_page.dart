@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:conciertos2/src/models/grupos_model.dart';
 import 'package:conciertos2/src/providers/grupos_provider.dart';
-import 'package:conciertos2/src/widget/cardDia2.dart';
 import 'package:conciertos2/src/widget/cards.dart';
+import 'package:conciertos2/src/models/grupos_model.dart';
 import 'package:flutter/material.dart';
 
 class DiaTresPage extends StatefulWidget {
@@ -25,54 +27,72 @@ class _DiaTresPageState extends State<DiaTresPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromRGBO(132, 40, 40, 1),
-        // appBar: AppBar(
-        //   backgroundColor: Color.fromRGBO(132, 40, 131, 1),
-        //   title: Center(
-        //     child: Text("Dia 2 - 19/02/2023"),
-        //   ),
-        // ),
-        body: //_todosGrupos.isEmpty ? _listarGrupos() : _buscarGrupos(),
-            Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("aa/background_dia2.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                _imagenFecha(),
-                _imagenNorte(),
-                _listarGruposNorte(),
-                _imagenSur(),
-                _listarGruposSur(),
-                _imagenMontana(),
-                _listarGruposMontana(),
-                _imagenBoomerang(),
-                _listarGruposBoomerang(),
-                _imagenLaCasita(),
-                _listarGruposLaCasita(),
-                _imagenParaguay(),
-                _listarGruposParaguay(),
-              ],
-            ),
-          ),
-        ));
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.green,
+        image: DecorationImage(
+          image: AssetImage("aa/background_dia1.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Column(children: [_imagenDiaTres(), _listarGruposDiaTres()]),
+    );
   }
 
-  Widget _imagenFecha() {
+  Widget _imagenDiaTres() {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: FadeInImage(
-        placeholder: AssetImage('aa/fecha2.png'),
-        image: AssetImage('aa/fecha2.png'),
+        placeholder: AssetImage('aa/Btn_Dia3.png'),
+        image: AssetImage('aa/Btn_Dia3.png'),
         fadeInDuration: Duration(seconds: 3),
         width: MediaQuery.of(context).size.width * 0.6,
         fit: BoxFit.cover,
       ),
+    );
+  }
+
+  Widget _listarGruposDiaTres() {
+    return FutureBuilder(
+      future: gruposProvider.mostrarGruposDiaTres(),
+      builder: (context, AsyncSnapshot snapshot) {
+        if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [Center(child: CircularProgressIndicator())],
+          );
+        }
+        final grupo = Grupos.fromJsonList(snapshot.data);
+        print("La lista de grupos del dia 1 es: ");
+
+        final _todosGruposDiaTres = grupo.items;
+        print(_todosGruposDiaTres);
+        return Column(
+          children: [
+            SizedBox(
+              height: 400,
+              child: Scrollbar(
+                thumbVisibility: true,
+                controller: _scrollControllerNorte,
+                thickness: 5,
+                child: ListView.builder(
+                    controller: _scrollControllerNorte,
+                    shrinkWrap: true,
+                    itemCount: _todosGruposDiaTres.length,
+                    itemBuilder: (context, index) {
+                      final grupo = _todosGruposDiaTres[index];
+                      //Grupo grupo1 =
+
+                      return _listItems(grupo);
+                    }),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -154,494 +174,6 @@ class _DiaTresPageState extends State<DiaTresPage> {
     );
   }
 
-  Widget _listarGruposNorte() {
-    return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaDosNorte(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: CircularProgressIndicator())],
-          );
-        }
-
-        //final material = Materiales.fromJsonList(result);
-        //final datosDecodificados = json.decode(snapshot.data);
-        final grupo = Grupos.fromJsonList(snapshot.data);
-
-        // if (_todosGrupos.isEmpty){
-        //   _todosGrupos = grupo.items;
-        //   _gruposEncontrados = grupo.items;
-        // }
-        final _todosGruposNorte = grupo.items;
-
-        return Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Scrollbar(
-                controller: _scrollControllerNorte,
-                //trackVisibility: true,
-                thumbVisibility: true,
-                thickness: 5,
-                child: ListView.builder(
-                    controller: _scrollControllerNorte,
-                    shrinkWrap: true,
-                    itemCount: _todosGruposNorte.length,
-                    itemBuilder: (context, index) {
-                      final grupo = _todosGruposNorte[index];
-                      //Grupo grupo1 =
-
-                      return _listItems(grupo);
-                    }),
-              ),
-            ),
-          ],
-        );
-
-        // return Column(
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.all(10),
-        //       child:
-        //           TextField(
-        //             onChanged: (text) {
-        //              _filtrar(text);
-        //             },
-        //             decoration: const InputDecoration(
-        //               labelText: 'Buscar Bandas',
-        //               suffixIcon: Icon(Icons.search),
-        //             )
-        //           ),
-        //     ),
-        //     Expanded(
-        //       child: SizedBox(
-        //         height: 200,
-        //         child: ListView.builder(
-        //           itemCount: _todosGrupos.length,
-        //           itemBuilder: (context, index) {
-        //             final grupo = _todosGrupos[index];
-        //             //Grupo grupo1 =
-
-        //             return _listItems (grupo);
-        //           }
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // );
-
-        // return ListView(
-        //      shrinkWrap: true,
-        //      physics: const NeverScrollableScrollPhysics(),
-        //      children: _listItems(reclamoCerradoCMDetalle.items, context)
-        // );
-      },
-    );
-  }
-
-  Widget _listarGruposSur() {
-    return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaDosSur(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: CircularProgressIndicator())],
-          );
-        }
-
-        //final material = Materiales.fromJsonList(result);
-        //final datosDecodificados = json.decode(snapshot.data);
-        final grupo = Grupos.fromJsonList(snapshot.data);
-
-        // if (_todosGrupos.isEmpty){
-        //   _todosGrupos = grupo.items;
-        //   _gruposEncontrados = grupo.items;
-        // }
-
-        final _todosGruposSur = grupo.items;
-
-        return Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Scrollbar(
-                thumbVisibility: true,
-                controller: _scrollControllerSur,
-                thickness: 5,
-                child: ListView.builder(
-                    controller: _scrollControllerSur,
-                    shrinkWrap: true,
-                    itemCount: _todosGruposSur.length,
-                    itemBuilder: (context, index) {
-                      final grupo = _todosGruposSur[index];
-                      //Grupo grupo1 =
-
-                      return _listItems(grupo);
-                    }),
-              ),
-            ),
-          ],
-        );
-
-        // return Column(
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.all(10),
-        //       child:
-        //           TextField(
-        //             onChanged: (text) {
-        //              _filtrar(text);
-        //             },
-        //             decoration: const InputDecoration(
-        //               labelText: 'Buscar Bandas',
-        //               suffixIcon: Icon(Icons.search),
-        //             )
-        //           ),
-        //     ),
-        //     Expanded(
-        //       child: SizedBox(
-        //         height: 200,
-        //         child: ListView.builder(
-        //           itemCount: _todosGrupos.length,
-        //           itemBuilder: (context, index) {
-        //             final grupo = _todosGrupos[index];
-        //             //Grupo grupo1 =
-
-        //             return _listItems (grupo);
-        //           }
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // );
-
-        // return ListView(
-        //      shrinkWrap: true,
-        //      physics: const NeverScrollableScrollPhysics(),
-        //      children: _listItems(reclamoCerradoCMDetalle.items, context)
-        // );
-      },
-    );
-  }
-
-  Widget _listarGruposMontana() {
-    return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaDosMontana(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: CircularProgressIndicator())],
-          );
-        }
-
-        //final material = Materiales.fromJsonList(result);
-        //final datosDecodificados = json.decode(snapshot.data);
-        final grupo = Grupos.fromJsonList(snapshot.data);
-
-        // if (_todosGrupos.isEmpty){
-        //   _todosGrupos = grupo.items;
-        //   _gruposEncontrados = grupo.items;
-        // }
-
-        final _todosGruposMontana = grupo.items;
-
-        return Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Scrollbar(
-                thumbVisibility: true,
-                controller: _scrollControllerMontana,
-                thickness: 5,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    controller: _scrollControllerMontana,
-                    itemCount: _todosGruposMontana.length,
-                    itemBuilder: (context, index) {
-                      final grupo = _todosGruposMontana[index];
-                      //Grupo grupo1 =
-
-                      return _listItems(grupo);
-                    }),
-              ),
-            ),
-          ],
-        );
-
-        // return Column(
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.all(10),
-        //       child:
-        //           TextField(
-        //             onChanged: (text) {
-        //              _filtrar(text);
-        //             },
-        //             decoration: const InputDecoration(
-        //               labelText: 'Buscar Bandas',
-        //               suffixIcon: Icon(Icons.search),
-        //             )
-        //           ),
-        //     ),
-        //     Expanded(
-        //       child: SizedBox(
-        //         height: 200,
-        //         child: ListView.builder(
-        //           itemCount: _todosGrupos.length,
-        //           itemBuilder: (context, index) {
-        //             final grupo = _todosGrupos[index];
-        //             //Grupo grupo1 =
-
-        //             return _listItems (grupo);
-        //           }
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // );
-
-        // return ListView(
-        //      shrinkWrap: true,
-        //      physics: const NeverScrollableScrollPhysics(),
-        //      children: _listItems(reclamoCerradoCMDetalle.items, context)
-        // );
-      },
-    );
-  }
-
-  Widget _listarGruposBoomerang() {
-    return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaDosBoomerang(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: CircularProgressIndicator())],
-          );
-        }
-
-        //final material = Materiales.fromJsonList(result);
-        //final datosDecodificados = json.decode(snapshot.data);
-        final grupo = Grupos.fromJsonList(snapshot.data);
-
-        // if (_todosGrupos.isEmpty){
-        //   _todosGrupos = grupo.items;
-        //   _gruposEncontrados = grupo.items;
-        // }
-
-        final _todosGruposBoomerang = grupo.items;
-
-        return Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Scrollbar(
-                thumbVisibility: true,
-                controller: _scrollControllerBoomerang,
-                thickness: 5,
-                child: ListView.builder(
-                    controller: _scrollControllerBoomerang,
-                    shrinkWrap: true,
-                    itemCount: _todosGruposBoomerang.length,
-                    itemBuilder: (context, index) {
-                      final grupo = _todosGruposBoomerang[index];
-                      //Grupo grupo1 =
-
-                      return _listItems(grupo);
-                    }),
-              ),
-            ),
-          ],
-        );
-
-        // return Column(
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.all(10),
-        //       child:
-        //           TextField(
-        //             onChanged: (text) {
-        //              _filtrar(text);
-        //             },
-        //             decoration: const InputDecoration(
-        //               labelText: 'Buscar Bandas',
-        //               suffixIcon: Icon(Icons.search),
-        //             )
-        //           ),
-        //     ),
-        //     Expanded(
-        //       child: SizedBox(
-        //         height: 200,
-        //         child: ListView.builder(
-        //           itemCount: _todosGrupos.length,
-        //           itemBuilder: (context, index) {
-        //             final grupo = _todosGrupos[index];
-        //             //Grupo grupo1 =
-
-        //             return _listItems (grupo);
-        //           }
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // );
-
-        // return ListView(
-        //      shrinkWrap: true,
-        //      physics: const NeverScrollableScrollPhysics(),
-        //      children: _listItems(reclamoCerradoCMDetalle.items, context)
-        // );
-      },
-    );
-  }
-
-  Widget _listarGruposLaCasita() {
-    return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaDosCasitaDelBlues(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: CircularProgressIndicator())],
-          );
-        }
-
-        //final material = Materiales.fromJsonList(result);
-        //final datosDecodificados = json.decode(snapshot.data);
-        final grupo = Grupos.fromJsonList(snapshot.data);
-
-        // if (_todosGrupos.isEmpty){
-        //   _todosGrupos = grupo.items;
-        //   _gruposEncontrados = grupo.items;
-        // }
-
-        final _todosGruposLaCasita = grupo.items;
-
-        return Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Scrollbar(
-                thumbVisibility: true,
-                controller: _scrollControllerCasita,
-                thickness: 5,
-                child: ListView.builder(
-                    controller: _scrollControllerCasita,
-                    shrinkWrap: true,
-                    itemCount: _todosGruposLaCasita.length,
-                    itemBuilder: (context, index) {
-                      final grupo = _todosGruposLaCasita[index];
-                      //Grupo grupo1 =
-
-                      return _listItems(grupo);
-                    }),
-              ),
-            ),
-          ],
-        );
-
-        // return Column(
-        //   children: [
-        //     Padding(
-        //       padding: const EdgeInsets.all(10),
-        //       child:
-        //           TextField(
-        //             onChanged: (text) {
-        //              _filtrar(text);
-        //             },
-        //             decoration: const InputDecoration(
-        //               labelText: 'Buscar Bandas',
-        //               suffixIcon: Icon(Icons.search),
-        //             )
-        //           ),
-        //     ),
-        //     Expanded(
-        //       child: SizedBox(
-        //         height: 200,
-        //         child: ListView.builder(
-        //           itemCount: _todosGrupos.length,
-        //           itemBuilder: (context, index) {
-        //             final grupo = _todosGrupos[index];
-        //             //Grupo grupo1 =
-
-        //             return _listItems (grupo);
-        //           }
-        //         ),
-        //       ),
-        //     ),
-        //   ],
-        // );
-
-        // return ListView(
-        //      shrinkWrap: true,
-        //      physics: const NeverScrollableScrollPhysics(),
-        //      children: _listItems(reclamoCerradoCMDetalle.items, context)
-        // );
-      },
-    );
-  }
-
-  Widget _listarGruposParaguay() {
-    return FutureBuilder(
-      future: gruposProvider.mostrarGruposDiaDosParaguay(),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.hasError) {
-          return Text(snapshot.error.toString());
-        }
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Center(child: CircularProgressIndicator())],
-          );
-        }
-        final grupo = Grupos.fromJsonList(snapshot.data);
-
-        final _todosGruposParaguay = grupo.items;
-
-        return Column(
-          children: [
-            SizedBox(
-              height: 400,
-              child: Scrollbar(
-                thumbVisibility: true,
-                controller: _scrollControllerParaguay,
-                thickness: 5,
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    controller: _scrollControllerParaguay,
-                    itemCount: _todosGruposParaguay.length,
-                    itemBuilder: (context, index) {
-                      final grupo = _todosGruposParaguay[index];
-                      //Grupo grupo1 =
-
-                      return _listItems(grupo);
-                    }),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   Widget _buscarGrupos() {
     return Column(
       children: [
@@ -687,7 +219,7 @@ class _DiaTresPageState extends State<DiaTresPage> {
     List<dynamic> grupo = [infogrupo.estadio, infogrupo.banda, infogrupo.fecha];
     final witgetvalue = Padding(
       padding: const EdgeInsets.only(top: 1.0, bottom: 1.0),
-      child: CardGrupo2(grupos: grupo),
+      child: CardGrupo(grupos: grupo),
     );
 
     return witgetvalue;

@@ -23,7 +23,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
         decoration: BoxDecoration(
           color: Colors.green,
           image: DecorationImage(
-            image: AssetImage("aa/background_inicio.png"),
+            image: AssetImage("aa/background_dia1.png"),
             fit: BoxFit.cover,
           ),
         ),
@@ -70,19 +70,19 @@ class _ImagenesPageState extends State<ImagenesPage> {
           //     ) ,
           // ),
 
-          Positioned(
-            top: 100,
-            left: 0.0,
-            right: 0.0,
-            //bottom: 400,
-            child: Container(
-                height: 280, // Altura deseada
-                width: 294,
-                child: Image(
-                    image: AssetImage(
-                  "aa/logoFecha.png",
-                ))),
-          ),
+          // Positioned(
+          //   top: 100,
+          //   left: 0.0,
+          //   right: 0.0,
+          //   //bottom: 400,
+          //   child: Container(
+          //       height: 280, // Altura deseada
+          //       width: 294,
+          //       child: Image(
+          //           image: AssetImage(
+          //         "aa/logoFecha.png",
+          //       ))),
+          // ),
 
           // Positioned(
           //   left: 0.0,
@@ -142,12 +142,32 @@ class _ImagenesPageState extends State<ImagenesPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _botonDiaUno(currentIndex),
-            _botonDiaDos(currentIndex),
-            _botonDiaTres(currentIndex),
-            _botonDiaCuatro(currentIndex),
+            Container(
+                height: 280, // Altura deseada
+                width: 294,
+                child: Image(
+                    image: AssetImage(
+                  "aa/logoFecha.png",
+                ))),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _botonDiaUno(currentIndex),
+                _botonDiaDos(currentIndex),
+              ],
+            ),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _botonDiaTres(currentIndex),
+                _botonDiaCuatro(currentIndex),
+              ],
+            ),
+
             // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
+            //
             //   children: [
 
             //   ],
@@ -173,7 +193,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Image(
-          image: AssetImage('aa/Btn_Dia1.png'),
+          image: AssetImage('aa/btndia1.jpg'),
           width: 150.0,
         ),
       ),
@@ -190,7 +210,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
       child: Padding(
         padding: const EdgeInsets.only(top: 5, bottom: 15),
         child: Image(
-          image: AssetImage('aa/Btn_Dia2.png'),
+          image: AssetImage('aa/btndia2.jpg'),
           width: 150.0,
         ),
       ),
@@ -207,7 +227,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
       child: Padding(
         padding: const EdgeInsets.only(top: 5, bottom: 15),
         child: Image(
-          image: AssetImage('aa/Btn_Dia3.png'),
+          image: AssetImage('aa/btndia3.jpg'),
           width: 150.0,
         ),
       ),
@@ -224,7 +244,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
       child: Padding(
         padding: const EdgeInsets.only(top: 5, bottom: 15),
         child: Image(
-          image: AssetImage('aa/Btn_Dia4.png'),
+          image: AssetImage('aa/btndia4.jpg'),
           width: 150.0,
         ),
       ),

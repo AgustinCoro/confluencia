@@ -18,33 +18,34 @@ class ProviderGrupos with ChangeNotifier {
 
     List<Map<String, dynamic>> avisos = [
       {
-        'mensaje': "Faltan 10 días para Cosquín Rock 2024 ¡Latido de Montaña!",
-        'fecha': "31/01/2024 00:00",
+        'mensaje':
+            "Faltan 10 días para Festival Confluencia 2025 ¡Latido de Montaña!",
+        'fecha': "27/01/2025 00:00",
         'notificado': 0
       },
       {
-        'mensaje': "- Faltan 5 días para Cosquín Rock 2024",
-        'fecha': "05/02/2024 00:00",
+        'mensaje': "- Faltan 5 días para Festival Confluencia 2025",
+        'fecha': "01/02/2025 00:00",
         'notificado': 0
       },
       {
-        'mensaje': "Faltan 3 días - Cosquín Rock 2024",
-        'fecha': "07/02/2024 00:00",
+        'mensaje': "Faltan 3 días - Festival Confluencia 2025",
+        'fecha': "03/02/2025 00:00",
         'notificado': 0
       },
       {
-        'mensaje': "Faltan 2 días - Cosquín Rock 2024",
-        'fecha': "08/02/2024 00:00",
+        'mensaje': "Faltan 2 días - Festival Confluencia 2025",
+        'fecha': "04/02/2025 00:00",
         'notificado': 0
       },
       {
-        'mensaje': "Mañana llega Cosquín Rock 2024",
-        'fecha': "09/02/2024 00:00",
+        'mensaje': "Mañana llega Festival Confluencia 2025",
+        'fecha': "05/02/2025 00:00",
         'notificado': 0
       },
       {
-        'mensaje': "¡Es hoy! ¡Es hoy! Buen día Cosquín Rock 2024",
-        'fecha': "10/02/2024 00:00",
+        'mensaje': "¡Es hoy! ¡Es hoy! Buen día Festival Confluencia 2025",
+        'fecha': "06/02/2025 00:00",
         'notificado': 0
       },
     ];
@@ -107,8 +108,8 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC");
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC");
 
     // print("Dia 1 norte");
     // print(result);
@@ -120,11 +121,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '06/02/2024 00:00' AND '06/02/2024 23:59' ORDER BY fecha DESC");
-
-    // print("Dia 1 norte");
-    // print(result);
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '06/02/2025 00:00' AND '06/02/2025 23:59' ORDER BY fecha DESC");
 
     return result;
   }
@@ -133,8 +130,8 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '07/02/2024 00:00' AND '07/02/2024 23:59' ORDER BY fecha DESC");
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '07/02/2025 00:00' AND '07/02/2025 23:59' ORDER BY fecha DESC");
 
     // print("Dia 1 norte");
     // print(result);
@@ -146,8 +143,8 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '08/02/2024 00:00' AND '08/02/2024 23:59' ORDER BY fecha DESC");
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '08/02/2025 00:00' AND '08/02/2025 23:59' ORDER BY fecha DESC");
 
     // print("Dia 1 norte");
     // print(result);
@@ -159,8 +156,8 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '09/02/2024 00:00' AND '09/02/2024 23:59' ORDER BY fecha DESC");
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '09/02/2025 00:00' AND '09/02/2025 23:59' ORDER BY fecha DESC");
 
     // print("Dia 1 norte");
     // print(result);
@@ -172,7 +169,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Sur' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Sur' ORDER BY fecha DESC");
 
     return result;
   }
@@ -181,7 +178,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Montaña' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Montaña' ORDER BY fecha DESC");
 
     return result;
   }
@@ -190,7 +187,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Boomerang' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Boomerang' ORDER BY fecha DESC");
 
     return result;
   }
@@ -199,7 +196,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Paraguay' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Paraguay' ORDER BY fecha DESC");
 
     return result;
   }
@@ -208,7 +205,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'La Casita del Blues' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'La Casita del Blues' ORDER BY fecha DESC");
 
     return result;
   }
@@ -217,7 +214,7 @@ class ProviderGrupos with ChangeNotifier {
   //   final db = await CosquiRockDataBase.instance.database;
 
   //   List<Map<String, dynamic>> result = await db.rawQuery(
-  //       "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' ORDER BY fecha DESC");
+  //       "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2025 00:00' AND '11/02/2025 23:59' ORDER BY fecha DESC");
 
   //   // print ("Los grupos del dia 2 son");
   //   // print(result);
@@ -229,8 +226,8 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Norte' ORDER BY fecha DESC");
+        //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2025 00:00' AND '11/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC");
 
     // print("Dia 1 norte");
     // print(result);
@@ -242,7 +239,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Sur' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2025 00:00' AND '11/02/2025 23:59' AND estadio like 'Sur' ORDER BY fecha DESC");
 
     return result;
   }
@@ -251,7 +248,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Montaña' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2025 00:00' AND '11/02/2025 23:59' AND estadio like 'Montaña' ORDER BY fecha DESC");
 
     return result;
   }
@@ -260,7 +257,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Boomerang' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2025 00:00' AND '11/02/2025 23:59' AND estadio like 'Boomerang' ORDER BY fecha DESC");
 
     return result;
   }
@@ -269,7 +266,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'Paraguay' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2025 00:00' AND '11/02/2025 23:59' AND estadio like 'Paraguay' ORDER BY fecha DESC");
 
     return result;
   }
@@ -278,7 +275,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' AND estadio like 'La Casita del Blues' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '11/02/2025 00:00' AND '11/02/2025 23:59' AND estadio like 'La Casita del Blues' ORDER BY fecha DESC");
 
     return result;
   }
@@ -303,7 +300,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '10/02/2024 00:00' AND '10/02/2024 23:59' ORDER BY fecha DESC");
+        "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '06/02/2025 00:00' AND '06/02/2025 23:59' ORDER BY fecha DESC");
 
     return result;
   }
@@ -312,7 +309,23 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '11/02/2024 00:00' AND '11/02/2024 23:59' ORDER BY fecha DESC");
+        "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '07/02/2025 00:00' AND '07/02/2025 23:59' ORDER BY fecha DESC");
+    return result;
+  }
+
+  Future<List<Map>> mostrarGruposDiaTresGrillaPersonal() async {
+    final db = await CosquiRockDataBase.instance.database;
+
+    List<Map> result = await db.rawQuery(
+        "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '08/02/2025 00:00' AND '08/02/2025 23:59' ORDER BY fecha DESC");
+    return result;
+  }
+
+  Future<List<Map>> mostrarGruposDiaCuatroGrillaPersonal() async {
+    final db = await CosquiRockDataBase.instance.database;
+
+    List<Map> result = await db.rawQuery(
+        "SELECT * FROM GrillaPersonal WHERE fecha BETWEEN '09/02/2025 00:00' AND '09/02/2025 23:59' ORDER BY fecha DESC");
     return result;
   }
 

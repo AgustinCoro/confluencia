@@ -39,8 +39,7 @@ class _IntroPageState extends State<IntroPage> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  "aa/background_inicio.png"
-                  ), // Cambia "Fondo.png" por tu imagen de fondo
+                    "aa/background_inicio.png"), // Cambia "Fondo.png" por tu imagen de fondo
                 fit: BoxFit.cover,
               ),
             ),
@@ -51,11 +50,12 @@ class _IntroPageState extends State<IntroPage> {
               opacity: opacity,
               duration: Duration(milliseconds: 4000),
               child: Container(
-                width: 310,  // Ajusta el ancho según tus necesidades
+                width: 310, // Ajusta el ancho según tus necesidades
                 height: 310, // Ajusta la altura según tus necesidades
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage("aa/Intro.png"), // Cambia "Intro.png" por tu imagen que carga lentamente
+                    image: AssetImage(
+                        "aa/logoFecha.png"), // Cambia "Intro.png" por tu imagen que carga lentamente
                   ),
                 ),
               ),
