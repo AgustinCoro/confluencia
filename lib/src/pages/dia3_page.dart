@@ -35,7 +35,43 @@ class _DiaTresPageState extends State<DiaTresPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(children: [_imagenDiaTres(), _listarGruposDiaTres()]),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                color: Colors.white,
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          //_imagenDiaTres(),
+          _imagenFechaTres(),
+          // Expanded(
+          //   child: _listarGruposDiaTres(),
+          // ),
+        ],
+      ),
+    );
+  }
+
+  Widget _imagenFechaTres() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      child: FadeInImage(
+        placeholder: AssetImage('aa/btnDia3.png'),
+        image: AssetImage('aa/btnDia3.png'),
+        fadeInDuration: Duration(seconds: 3),
+        //width: screenWidth * 0.6,
+        fit: BoxFit.cover,
+      ),
     );
   }
 
@@ -43,8 +79,8 @@ class _DiaTresPageState extends State<DiaTresPage> {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: FadeInImage(
-        placeholder: AssetImage('aa/Btn_Dia3.png'),
-        image: AssetImage('aa/Btn_Dia3.png'),
+        placeholder: AssetImage('aa/btnDia3.png'),
+        image: AssetImage('aa/btnDia3.png'),
         fadeInDuration: Duration(seconds: 3),
         width: MediaQuery.of(context).size.width * 0.6,
         fit: BoxFit.cover,
@@ -71,9 +107,10 @@ class _DiaTresPageState extends State<DiaTresPage> {
         final _todosGruposDiaTres = grupo.items;
         print(_todosGruposDiaTres);
         return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 400,
+              height: 500,
               child: Scrollbar(
                 thumbVisibility: true,
                 controller: _scrollControllerNorte,

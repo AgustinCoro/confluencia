@@ -35,7 +35,42 @@ class _DiaDosPageState extends State<DiaDosPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(children: [_imagenDiaDos(), _listarGruposDiaDos()]),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                color: Colors.white,
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          _imagenFechaDos(),
+          // Expanded(
+          //   child: _listarGruposDiaDos(),
+          // ),
+        ],
+      ),
+    );
+  }
+
+  Widget _imagenFechaDos() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      child: FadeInImage(
+        placeholder: AssetImage('aa/btnDia2.png'),
+        image: AssetImage('aa/btnDia2.png'),
+        fadeInDuration: Duration(seconds: 3),
+        //width: screenWidth * 0.6,
+        fit: BoxFit.cover,
+      ),
     );
   }
 
@@ -43,8 +78,8 @@ class _DiaDosPageState extends State<DiaDosPage> {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: FadeInImage(
-        placeholder: AssetImage('aa/Btn_Dia2.png'),
-        image: AssetImage('aa/Btn_Dia2.png'),
+        placeholder: AssetImage('aa/btnDia2.png'),
+        image: AssetImage('aa/btnDia2.png'),
         fadeInDuration: Duration(seconds: 3),
         width: MediaQuery.of(context).size.width * 0.6,
         fit: BoxFit.cover,
@@ -71,6 +106,7 @@ class _DiaDosPageState extends State<DiaDosPage> {
         final _todosGruposDiaDos = grupo.items;
         print(_todosGruposDiaDos);
         return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 400,

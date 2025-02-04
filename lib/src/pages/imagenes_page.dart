@@ -1,5 +1,7 @@
 import 'package:conciertos2/src/pages/dia1_page.dart';
 import 'package:conciertos2/src/pages/dia2_page.dart';
+import 'package:conciertos2/src/pages/dia3_page.dart';
+import 'package:conciertos2/src/pages/dia4_page.dart';
 import 'package:conciertos2/src/pages/migrilla_page.dart';
 import 'package:conciertos2/src/providers/grupos_provider.dart';
 import 'package:flutter/material.dart';
@@ -178,7 +180,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
 
             //   ],
             // ),
-            _botonGrilla(currentIndex),
+            //_botonGrilla(currentIndex),
             //_botonMapa(currentIndex),
           ],
         ));
@@ -188,12 +190,14 @@ class _ImagenesPageState extends State<ImagenesPage> {
     return GestureDetector(
       onTap: () {
         print("Presiono el boton del menu 1");
-        currentIndex.indexMenu = 1;
+        //currentIndex.indexMenu = 1;
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => DiaUnoPage()));
       },
       child: Padding(
         padding: const EdgeInsets.only(bottom: 10),
         child: Image(
-          image: AssetImage('aa/btndia1.jpg'),
+          image: AssetImage('aa/btnDia1.png'),
           width: 150.0,
         ),
       ),
@@ -205,12 +209,14 @@ class _ImagenesPageState extends State<ImagenesPage> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         print("Presiono el boton del menu 2");
-        currentIndex.indexMenu = 2;
+        //currentIndex.indexMenu = 2;
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => DiaDosPage()));
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 5, bottom: 15),
         child: Image(
-          image: AssetImage('aa/btndia2.jpg'),
+          image: AssetImage('aa/btnDia2.png'),
           width: 150.0,
         ),
       ),
@@ -222,12 +228,14 @@ class _ImagenesPageState extends State<ImagenesPage> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         print("Presiono el boton del menu 3");
-        currentIndex.indexMenu = 3;
+        //currentIndex.indexMenu = 3;
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => DiaTresPage()));
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 5, bottom: 15),
         child: Image(
-          image: AssetImage('aa/btndia3.jpg'),
+          image: AssetImage('aa/btnDia3.png'),
           width: 150.0,
         ),
       ),
@@ -239,12 +247,14 @@ class _ImagenesPageState extends State<ImagenesPage> {
       behavior: HitTestBehavior.translucent,
       onTap: () {
         print("Presiono el boton del menu 4");
-        currentIndex.indexMenu = 4;
+        //currentIndex.indexMenu = 4;
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => DiaCuatroPage()));
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 5, bottom: 15),
         child: Image(
-          image: AssetImage('aa/btndia4.jpg'),
+          image: AssetImage('aa/btnDia4.png'),
           width: 150.0,
         ),
       ),

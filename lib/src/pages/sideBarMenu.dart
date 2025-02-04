@@ -2,6 +2,7 @@ import 'package:conciertos2/src/pages/dia1_page.dart';
 import 'package:conciertos2/src/pages/dia2_page.dart';
 import 'package:conciertos2/src/pages/dia3_page.dart';
 import 'package:conciertos2/src/pages/dia4_page.dart';
+import 'package:conciertos2/src/pages/elementos_page.dart';
 import 'package:conciertos2/src/pages/imagenes_page.dart';
 import 'package:conciertos2/src/providers/grupos_provider.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class SideBarMenu extends StatelessWidget {
         elevation: 0, // Quita la sombra del AppBar
       ),
       drawer: Drawer(
+        backgroundColor: Colors.black,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -50,8 +52,14 @@ class SideBarMenu extends StatelessWidget {
             //   ),
             // ),
             ListTile(
-              leading: Icon(Icons.home),
-              title: Text("Inicio"),
+              leading: Icon(
+                Icons.home,
+                color: Colors.white,
+              ),
+              title: Text(
+                "Inicio",
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ImagenesPage()));
@@ -59,8 +67,14 @@ class SideBarMenu extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.date_range),
-              title: Text("DIA 1"),
+              leading: Icon(
+                Icons.date_range,
+                color: Colors.white,
+              ),
+              title: Text(
+                "DIA 1",
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => DiaUnoPage()));
@@ -68,8 +82,14 @@ class SideBarMenu extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.date_range),
-              title: Text("DIA 2"),
+              leading: Icon(
+                Icons.date_range,
+                color: Colors.white,
+              ),
+              title: Text(
+                "DIA 2",
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => DiaDosPage()));
@@ -77,8 +97,14 @@ class SideBarMenu extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.date_range),
-              title: Text("DIA 3"),
+              leading: Icon(
+                Icons.date_range,
+                color: Colors.white,
+              ),
+              title: Text(
+                "DIA 3",
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => DiaTresPage()));
@@ -86,11 +112,32 @@ class SideBarMenu extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.date_range),
-              title: Text("DIA 4"),
+              leading: Icon(
+                Icons.date_range,
+                color: Colors.white,
+              ),
+              title: Text(
+                "DIA 4",
+                style: TextStyle(color: Colors.white),
+              ),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => DiaCuatroPage()));
+                ; // Cierra el drawer
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.date_range,
+                color: Colors.white,
+              ),
+              title: Text(
+                "Elementos",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ElementosPage()));
                 ; // Cierra el drawer
               },
             ),

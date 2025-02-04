@@ -1,5 +1,6 @@
 import 'package:conciertos2/src/pages/principal_page.dart';
 import 'package:conciertos2/src/pages/sideBarMenu.dart';
+import 'package:conciertos2/src/pages/sideBarMenu2.dart';
 import 'package:conciertos2/src/providers/grupos_provider.dart';
 import 'package:conciertos2/src/services/notification_services.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: <String, WidgetBuilder>{
           //'/': (BuildContext context) => PrincipalPage(),
-          '/': (BuildContext context) => SideBarMenu(),
+          '/': (BuildContext context) => Sidebarmenu2(),
         },
       ),
     );

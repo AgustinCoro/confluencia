@@ -35,7 +35,42 @@ class _DiaCuatroPageState extends State<DiaCuatroPage> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(children: [_imagenDiaCuatro(), _listarGruposDiaCuatro()]),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 25,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                color: Colors.white,
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          ),
+          _imagenFechaCuatro(),
+          // Expanded(
+          //   child: _listarGruposDiaCuatro(),
+          // ),
+        ],
+      ),
+    );
+  }
+
+  Widget _imagenFechaCuatro() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      child: FadeInImage(
+        placeholder: AssetImage('aa/btnDia4.png'),
+        image: AssetImage('aa/btnDia4.png'),
+        fadeInDuration: Duration(seconds: 3),
+        //width: screenWidth * 0.6,
+        fit: BoxFit.cover,
+      ),
     );
   }
 
@@ -43,8 +78,8 @@ class _DiaCuatroPageState extends State<DiaCuatroPage> {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: FadeInImage(
-        placeholder: AssetImage('aa/Btn_Dia4.png'),
-        image: AssetImage('aa/Btn_Dia4.png'),
+        placeholder: AssetImage('aa/btnDia4.png'),
+        image: AssetImage('aa/btnDia4.png'),
         fadeInDuration: Duration(seconds: 3),
         width: MediaQuery.of(context).size.width * 0.6,
         fit: BoxFit.cover,
@@ -71,6 +106,7 @@ class _DiaCuatroPageState extends State<DiaCuatroPage> {
         final _todosGruposDiaCuatro = grupo.items;
         print(_todosGruposDiaCuatro);
         return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               height: 400,
