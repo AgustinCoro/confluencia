@@ -56,6 +56,7 @@ class _DiaCuatroPageState extends State<DiaCuatroPage> {
           // Expanded(
           //   child: _listarGruposDiaCuatro(),
           // ),
+          _listarGruposDiaCuatro(),
         ],
       ),
     );
@@ -63,10 +64,10 @@ class _DiaCuatroPageState extends State<DiaCuatroPage> {
 
   Widget _imagenFechaCuatro() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 0),
       child: FadeInImage(
-        placeholder: AssetImage('aa/btnDia4.png'),
-        image: AssetImage('aa/btnDia4.png'),
+        placeholder: AssetImage('aa/Btn_Dia4.png'),
+        image: AssetImage('aa/Btn_Dia4.png'),
         fadeInDuration: Duration(seconds: 3),
         //width: screenWidth * 0.6,
         fit: BoxFit.cover,
@@ -76,7 +77,7 @@ class _DiaCuatroPageState extends State<DiaCuatroPage> {
 
   Widget _imagenDiaCuatro() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 0, bottom: 20),
       child: FadeInImage(
         placeholder: AssetImage('aa/btnDia4.png'),
         image: AssetImage('aa/btnDia4.png'),

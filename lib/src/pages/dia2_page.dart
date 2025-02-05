@@ -53,9 +53,7 @@ class _DiaDosPageState extends State<DiaDosPage> {
             ],
           ),
           _imagenFechaDos(),
-          // Expanded(
-          //   child: _listarGruposDiaDos(),
-          // ),
+          _listarGruposDiaDos(),
         ],
       ),
     );
@@ -63,10 +61,10 @@ class _DiaDosPageState extends State<DiaDosPage> {
 
   Widget _imagenFechaDos() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 0),
       child: FadeInImage(
-        placeholder: AssetImage('aa/btnDia2.png'),
-        image: AssetImage('aa/btnDia2.png'),
+        placeholder: AssetImage('aa/Btn_Dia2.png'),
+        image: AssetImage('aa/Btn_Dia2.png'),
         fadeInDuration: Duration(seconds: 3),
         //width: screenWidth * 0.6,
         fit: BoxFit.cover,
@@ -76,7 +74,7 @@ class _DiaDosPageState extends State<DiaDosPage> {
 
   Widget _imagenDiaDos() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 0, bottom: 20),
       child: FadeInImage(
         placeholder: AssetImage('aa/btnDia2.png'),
         image: AssetImage('aa/btnDia2.png'),

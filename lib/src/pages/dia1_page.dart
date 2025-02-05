@@ -54,9 +54,7 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
           ),
           _imagenFechaUno(),
           //_imagenDiaUno(),
-          // Expanded(
-          //   child: _listarGruposDiaUno(),
-          // ),
+          _listarGruposDiaUno()
         ],
       ),
     );
@@ -64,10 +62,10 @@ class _DiaUnoPageState extends State<DiaUnoPage> {
 
   Widget _imagenFechaUno() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 0),
       child: FadeInImage(
-        placeholder: AssetImage('aa/btnDia1.png'),
-        image: AssetImage('aa/btnDia1.png'),
+        placeholder: AssetImage('aa/Btn_Dia1.png'),
+        image: AssetImage('aa/Btn_Dia1.png'),
         fadeInDuration: Duration(seconds: 3),
         //width: screenWidth * 0.6,
         fit: BoxFit.cover,

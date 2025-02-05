@@ -44,7 +44,7 @@ class _CardGrupoState extends State<CardGrupo> {
                 onTap: () async {
                   await gruposProvider.ingresarBandaGrillaPersonal(
                       widget.grupos[0], widget.grupos[1], widget.grupos[2]);
-                  showDialogMensaje(widget.grupos[1]);
+                  showDialogMensaje(widget.grupos[1], widget.grupos[2]);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -68,36 +68,38 @@ class _CardGrupoState extends State<CardGrupo> {
   _banda() {
     return Row(
       children: [
-        // const Icon(
-        //   Icons.groups,
-        //   size: 40,
-        //   color: Colors.grey,
-        // ),
         const SizedBox(width: 10),
         Flexible(
           child: Center(
             child: Text.rich(
               TextSpan(
-                //text: 'Banda: ',
                 children: [
                   TextSpan(
                     text: '${widget.grupos[1].toUpperCase()}',
                     style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w500, height: 1.5),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      height: 1.5,
+                      decoration: TextDecoration.none, // 🔹 Sin subrayado
+                    ),
                   ),
-                  // TextSpan(
-                  //   text: ' - ${widget.grupos[2].substring(10)}',
-                  //   style: const TextStyle(
-                  //       fontSize: 20,
-                  //       fontWeight: FontWeight.w500,
-                  //       height: 1.5),
-                  // )
+                  TextSpan(
+                    text: ' - ${widget.grupos[2].substring(10)}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                      height: 1.5,
+                      decoration: TextDecoration.none, // 🔹 Sin subrayado
+                    ),
+                  ),
                 ],
               ),
               style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500),
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                decoration: TextDecoration.none, // 🔹 Sin subrayado
+              ),
             ),
           ),
         ),
@@ -105,7 +107,45 @@ class _CardGrupoState extends State<CardGrupo> {
     );
   }
 
-  showDialogMensaje(String banda) {
+  // _banda() {
+  //   return Row(
+  //     children: [
+  //       // const Icon(
+  //       //   Icons.groups,
+  //       //   size: 40,
+  //       //   color: Colors.grey,
+  //       // ),
+  //       const SizedBox(width: 10),
+  //       Flexible(
+  //         child: Center(
+  //           child: Text.rich(
+  //             TextSpan(
+  //               //text: 'Banda: ',
+  //               children: [
+  //                 TextSpan(
+  //                   text: '${widget.grupos[1].toUpperCase()}',
+  //                   style: const TextStyle(
+  //                       fontSize: 20, fontWeight: FontWeight.w500, height: 1.5),
+  //                 ),
+  //                 TextSpan(
+  //                   text: ' - ${widget.grupos[2].substring(10)}',
+  //                   style: const TextStyle(
+  //                       fontSize: 20, fontWeight: FontWeight.w500, height: 1.5),
+  //                 )
+  //               ],
+  //             ),
+  //             style: const TextStyle(
+  //                 color: Colors.white,
+  //                 fontSize: 20,
+  //                 fontWeight: FontWeight.w500),
+  //           ),
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  showDialogMensaje(String banda, String fecha) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -114,7 +154,10 @@ class _CardGrupoState extends State<CardGrupo> {
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                Text('${banda} se agregó a Mi Grilla'),
+                //Text('${banda} se agregó a Mi Grilla'),
+                Text('${banda} ${fecha}'),
+                Text(
+                    'Te enviaremos una notificación con el comienzo del show. #ActivaElMovimiento'),
               ],
             ),
           );

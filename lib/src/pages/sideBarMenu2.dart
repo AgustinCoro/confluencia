@@ -83,6 +83,9 @@ class _Sidebarmenu2State extends State<Sidebarmenu2> {
 
   @override
   Widget build(BuildContext context) {
+    startTimer();
+    mostrarMensajes();
+
     final currentIndex = Provider.of<ProviderGrupos>(context, listen: true);
     return Scaffold(
       // appBar: AppBar(
@@ -139,6 +142,21 @@ class _Sidebarmenu2State extends State<Sidebarmenu2> {
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Sidebarmenu2()));
+                ; // Cierra el drawer
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.date_range,
+                color: Colors.white,
+              ),
+              title: Text(
+                "Grilla",
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MiGrillaPage()));
                 ; // Cierra el drawer
               },
             ),
@@ -208,27 +226,12 @@ class _Sidebarmenu2State extends State<Sidebarmenu2> {
                 color: Colors.white,
               ),
               title: Text(
-                "Elementos",
+                "Elementos SI / NO",
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ElementosPage()));
-                ; // Cierra el drawer
-              },
-            ),
-            ListTile(
-              leading: Icon(
-                Icons.date_range,
-                color: Colors.white,
-              ),
-              title: Text(
-                "Grilla",
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MiGrillaPage2()));
                 ; // Cierra el drawer
               },
             ),

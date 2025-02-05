@@ -121,7 +121,7 @@ class ProviderGrupos with ChangeNotifier {
     final db = await CosquiRockDataBase.instance.database;
 
     List<Map> result = await db.rawQuery(
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '06/02/2025 00:00' AND '06/02/2025 23:59' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '06/02/2025 00:00' AND '06/02/2025 23:59' ");
 
     return result;
   }
@@ -131,7 +131,7 @@ class ProviderGrupos with ChangeNotifier {
 
     List<Map> result = await db.rawQuery(
         //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '07/02/2025 00:00' AND '07/02/2025 23:59' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '07/02/2025 00:00' AND '07/02/2025 23:59' ");
 
     // print("Dia 1 norte");
     // print(result);
@@ -144,7 +144,7 @@ class ProviderGrupos with ChangeNotifier {
 
     List<Map> result = await db.rawQuery(
         //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '08/02/2025 00:00' AND '08/02/2025 23:59' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '08/02/2025 00:00' AND '08/02/2025 23:59' ");
 
     // print("Dia 1 norte");
     // print(result);
@@ -157,7 +157,7 @@ class ProviderGrupos with ChangeNotifier {
 
     List<Map> result = await db.rawQuery(
         //"SELECT estadio, banda, strftime('%H:%M', fecha, 'unixepoch', 'localtime') as fecha FROM Grilla WHERE fecha BETWEEN '10/02/2025 00:00' AND '10/02/2025 23:59' AND estadio like 'Norte' ORDER BY fecha DESC"
-        "SELECT * FROM Grilla WHERE fecha BETWEEN '09/02/2025 00:00' AND '09/02/2025 23:59' ORDER BY fecha DESC");
+        "SELECT * FROM Grilla WHERE fecha BETWEEN '09/02/2025 00:00' AND '09/02/2025 23:59' ");
 
     // print("Dia 1 norte");
     // print(result);

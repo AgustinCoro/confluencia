@@ -57,6 +57,7 @@ class _DiaTresPageState extends State<DiaTresPage> {
           // Expanded(
           //   child: _listarGruposDiaTres(),
           // ),
+          _listarGruposDiaTres(),
         ],
       ),
     );
@@ -64,10 +65,10 @@ class _DiaTresPageState extends State<DiaTresPage> {
 
   Widget _imagenFechaTres() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 0),
       child: FadeInImage(
-        placeholder: AssetImage('aa/btnDia3.png'),
-        image: AssetImage('aa/btnDia3.png'),
+        placeholder: AssetImage('aa/Btn_Dia3.png'),
+        image: AssetImage('aa/Btn_Dia3.png'),
         fadeInDuration: Duration(seconds: 3),
         //width: screenWidth * 0.6,
         fit: BoxFit.cover,
@@ -77,7 +78,7 @@ class _DiaTresPageState extends State<DiaTresPage> {
 
   Widget _imagenDiaTres() {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      padding: const EdgeInsets.only(top: 0, bottom: 20),
       child: FadeInImage(
         placeholder: AssetImage('aa/btnDia3.png'),
         image: AssetImage('aa/btnDia3.png'),

@@ -142,15 +142,18 @@ class _ImagenesPageState extends State<ImagenesPage> {
     return Padding(
         padding: const EdgeInsets.only(top: 0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          //mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-                height: 280, // Altura deseada
-                width: 294,
+                height: 300, // Altura deseada
+                width: 394,
                 child: Image(
                     image: AssetImage(
                   "aa/logoFecha.png",
                 ))),
+
+            //SizedBox(height: 10),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -159,6 +162,13 @@ class _ImagenesPageState extends State<ImagenesPage> {
                 _botonDiaDos(currentIndex),
               ],
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     _botonDiaUno(currentIndex),
+            //     _botonDiaDos(currentIndex),
+            //   ],
+            // ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -167,6 +177,10 @@ class _ImagenesPageState extends State<ImagenesPage> {
                 _botonDiaCuatro(currentIndex),
               ],
             ),
+
+            SizedBox(
+              height: 30,
+            )
 
             // Row(
             //
@@ -198,7 +212,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
         padding: const EdgeInsets.only(bottom: 10),
         child: Image(
           image: AssetImage('aa/btnDia1.png'),
-          width: 150.0,
+          width: 180.0,
         ),
       ),
     );
@@ -214,10 +228,10 @@ class _ImagenesPageState extends State<ImagenesPage> {
             context, MaterialPageRoute(builder: (context) => DiaDosPage()));
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 5, bottom: 15),
+        padding: const EdgeInsets.only(top: 0, bottom: 15),
         child: Image(
           image: AssetImage('aa/btnDia2.png'),
-          width: 150.0,
+          width: 180.0,
         ),
       ),
     );
@@ -233,10 +247,10 @@ class _ImagenesPageState extends State<ImagenesPage> {
             context, MaterialPageRoute(builder: (context) => DiaTresPage()));
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 5, bottom: 15),
+        padding: const EdgeInsets.only(top: 0, bottom: 15),
         child: Image(
           image: AssetImage('aa/btnDia3.png'),
-          width: 150.0,
+          width: 180.0,
         ),
       ),
     );
@@ -252,10 +266,10 @@ class _ImagenesPageState extends State<ImagenesPage> {
             context, MaterialPageRoute(builder: (context) => DiaCuatroPage()));
       },
       child: Padding(
-        padding: const EdgeInsets.only(top: 5, bottom: 15),
+        padding: const EdgeInsets.only(top: 0, bottom: 15),
         child: Image(
           image: AssetImage('aa/btnDia4.png'),
-          width: 150.0,
+          width: 180.0,
         ),
       ),
     );
@@ -271,7 +285,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
         padding: const EdgeInsets.only(),
         child: Image(
           image: AssetImage('aa/Btn_MiGrilla.png'),
-          width: 150.0,
+          width: 180.0,
         ),
       ),
     );
@@ -287,7 +301,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
         padding: const EdgeInsets.only(),
         child: Image(
           image: AssetImage('aa/Btn_MiMapa.png'),
-          width: 150.0,
+          width: 180.0,
         ),
       ),
     );
@@ -315,7 +329,7 @@ class _ImagenesPageState extends State<ImagenesPage> {
 //       },
 //       child: Image(
 //         image: AssetImage('aa/Btn_Dia2.png'),
-//         width: 150.0,
+//         width: 180.0,
 //       ),
 //     );
 //   }
