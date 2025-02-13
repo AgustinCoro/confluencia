@@ -17,12 +17,12 @@ class MapaPage extends StatelessWidget {
     //             //fit: BoxFit.cover,
     //           ),
     //       ),
-    //     ),   
+    //     ),
     // );
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 1),
       body: PhotoView(
-        imageProvider: AssetImage("aa/mapa.jpg"),
+        imageProvider: AssetImage("aa/mapa2.png"),
       ),
     );
   }

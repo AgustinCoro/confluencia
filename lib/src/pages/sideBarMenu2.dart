@@ -151,12 +151,12 @@ class _Sidebarmenu2State extends State<Sidebarmenu2> {
                 color: Colors.white,
               ),
               title: Text(
-                "Grilla",
+                "Mapa",
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MiGrillaPage()));
+                    MaterialPageRoute(builder: (context) => MapaPage()));
                 ; // Cierra el drawer
               },
             ),
